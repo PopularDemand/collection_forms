@@ -1,8 +1,0 @@
-development:
-  adapter: postgresql
-  database: collection_forms   # name this whatever you want
-  host: localhost
-  password: alexa
-  port: 5433
-  pool: 5                             # Not required
-  timeout: 5000 
