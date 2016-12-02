@@ -1,6 +1,4 @@
 class Comment < ApplicationRecord
-  belongs_to :user, :foreign_key => :author_id
-  belongs_to :author, :class_name => "User"
-  belongs_to :post
-  belongs_to :parent_post, :class_name => "Post"
+  belongs_to :author, :foreign_key => :author_id, :class_name => "User", optional: true
+  belongs_to :post, :inverse_of => :comments
 end

@@ -5,9 +5,8 @@
   <%= post_fields.label :body %>
   <%= post_fields.text_field :body %>
   <br>
-  <br>
   <h2>Tags</h2>
-  <h3>Use this:</h3>
+  <!-- <h3>Use this:</h3> -->
   <%= post_fields.label :tags %>
   <%= post_fields.collection_check_boxes(
         :tag_ids,
@@ -16,7 +15,7 @@
         :name
         ) %>
   <br>
-  <h3>OR - Use this:</h3>
+  <!-- <h3>OR - Use this:</h3>
   <%= post_fields.collection_select(
       :tag_ids,
       Tag.all,
@@ -24,11 +23,10 @@
       :name,
       {include_blank: true},
       { multiple: true}
-  ) %>
-  <br>
+  ) %> -->
   <br>
   <h2>Category</h2>
-  <h3>Use this:</h3>
+  <!-- <h3>Use this:</h3>
   <input type="radio" name="post[category_id]" value="" id="blank_radio_opt">
   <label for="blank_radio_opt">None</label>
   <%= post_fields.collection_radio_buttons(
@@ -38,7 +36,7 @@
       :name
   ) %>
   <br>
-  <h3>OR - Use this:</h3>
+  <h3>OR - Use this:</h3> -->
   <%= post_fields.collection_select(
       :category_id,
       Category.all,
@@ -46,21 +44,15 @@
       :name
   ) %>
   <br>
+  <h3>Comments</h3>
+    <%= post_fields.fields_for :comments do |comment_fields| %>
+      <%= comment_fields.label :body %>
+      <%= comment_fields.text_field :body %>
+    <% end %>
+
+
+
+
 <%= post_fields.submit "Save Post" %>
 
 <% end %>
-
-<hr>
-<h2>WOW - Check this out!</h2>
-<%= form_tag(posts_path(@post.id), method: "post") do %>
-<%= label_tag("post[title]", "Title:") %>
-<%= text_field_tag("post[title]") %><br>
-<%= label_tag("post[body]", "Body:") %>
-  <%= text_field_tag("post[body]") %><br>
-  <%= select_tag(
-        "post[category_id]",
-        options_for_select( @category_options, @post.category_id )
-      ) %>
-  <br>
-  <%= submit_tag("Save Post") %>
-<% end  %>

@@ -10,3 +10,21 @@
 <input name="post[tag_ids][]" type="checkbox" value="5">
 <input type="submit" value="Update Post">
 </form>
+
+
+we did this. we cannot comment it out. here.
+
+<hr>
+<h2>WOW - Check this out!</h2>
+<%= form_tag(posts_path(@post.id), method: "post") do %>
+<%= label_tag("post[title]", "Title:") %>
+<%= text_field_tag("post[title]") %><br>
+<%= label_tag("post[body]", "Body:") %>
+  <%= text_field_tag("post[body]") %><br>
+  <%= select_tag(
+        "post[category_id]",
+        options_for_select( @category_options, @post.category_id )
+      ) %>
+  <br>
+  <%= submit_tag("Save Post") %>
+<% end  %>
