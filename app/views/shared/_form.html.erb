@@ -4,14 +4,42 @@
   <%= post_fields.text_field :title %>
   <%= post_fields.label :body %>
   <%= post_fields.text_field :body %>
-
+  <br>
   <%= post_fields.collection_check_boxes(
         :tag_ids,
         Tag.all.limit(5),
         :id,
         :name
         ) %>
-
-  <%= post_fields.submit "Create Post" %>
+    <br>
+    <%= post_fields.collection_radio_buttons(
+        :category_id,
+        Category.all,
+        :id,
+        :name
+    ) %>
+    <br>
+    <%= post_fields.collection_select(
+        :category_id,
+        Category.all,
+        :id,
+        :name
+    ) %>
+    <br>
+  <%= post_fields.submit "Save Post" %>
 
 <% end %>
+
+<hr>
+<%= form_tag(posts_path(@post.id), method: "post") do %>
+<%= label_tag("post[title]", "Title:") %>
+<%= text_field_tag("post[title]") %><br>
+<%= label_tag("post[body]", "Body:") %>
+  <%= text_field_tag("post[body]") %><br>
+  <%= select_tag(
+        "post[category_id]",
+        options_for_select( @category_options, @post.category_id )
+      ) %>
+  <br>
+  <%= submit_tag("Save Post") %>
+<% end  %>

@@ -2,10 +2,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @category_options = Category.all.map { |c| [c.name, c.id] }
   end
 
   def edit
     @post = Post.find(params[:id])
+    @category_options = Category.all.map { |c| [c.name, c.id] }
   end
 
   def show
@@ -41,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def whitelisted_post_params
-    params.require(:post).permit(:title, :body, :tag_ids => [])
+    params.require(:post).permit(:title, :body, :category_id, :tag_ids => [])
   end
 
 end

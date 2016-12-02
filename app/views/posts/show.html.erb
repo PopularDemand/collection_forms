@@ -1,5 +1,6 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
+<p><%= Category.find(@post.category_id).name %></p>
 
 <ul>
   <% @post.tags.each do |tag| %>
