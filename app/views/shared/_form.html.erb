@@ -1,0 +1,10 @@
+<%= form_for @post do | post_fields | %>
+  <%= post_fields.text_field :title %>
+  <%= post_fields.text_field :body %>
+
+  <%= collection_checkboxes(
+        :tag_ids,
+        Tag.all,
+        :id,
+        :name
+        )
