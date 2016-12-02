@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def index
-
+    @posts = Post.all
   end
 
   private
@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   end
 
   def whitelisted_post_params
-    params.require(:post).permit(:title, :body, :category_id, :tag_ids => [], :comments_attributes => [:body, :id])
+    params.require(:post).permit(:title, :body, :category_id, :tag_ids => [], :comments_attributes => [:body, :id, :_destroy])
   end
 
 end

@@ -8,4 +8,13 @@
   <% end %>
 </ul>
 
+<% unless @post.comments.empty? %>
+  <% @post.comments.each do |comment| %>
+    <strong>Comment:</strong>
+    <p><%= comment.body %></p>
+  <% end %>
+<% end %>
+
+
+
 <%= link_to "Edit post", edit_post_path(@post) %>
