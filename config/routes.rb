@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  resources :posts, except: [:destroy, :index]
+  resources :posts, except: [:destroy]
 end

@@ -26,7 +26,7 @@ end
 
 puts "Creating comments"
 50.times do
-  Comment.create!(user_id: Faker::Number.between(User.first.id, User.last.id),
+  Comment.create!(author_id: Faker::Number.between(User.first.id, User.last.id),
                   post_id: Faker::Number.between(Post.first.id, Post.last.id),
                   body: Faker::Lorem.paragraph)
 end

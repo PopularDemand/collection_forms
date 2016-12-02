@@ -1,10 +1,17 @@
 <%= form_for @post do | post_fields | %>
+
+  <%= post_fields.label :title %>
   <%= post_fields.text_field :title %>
+  <%= post_fields.label :body %>
   <%= post_fields.text_field :body %>
 
-  <%= collection_checkboxes(
+  <%= post_fields.collection_check_boxes(
         :tag_ids,
-        Tag.all,
+        Tag.all.limit(5),
         :id,
         :name
-        )
+        ) %>
+
+  <%= post_fields.submit "Create Post" %>
+
+<% end %>
