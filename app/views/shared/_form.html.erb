@@ -1,10 +1,13 @@
 <%= form_for @post, :html => {:class => 'post_form', :id => "#{form_id}"} do | post_fields | %>
-
+  <h2>Main Post</h2>
   <%= post_fields.label :title %>
   <%= post_fields.text_field :title %>
   <%= post_fields.label :body %>
   <%= post_fields.text_field :body %>
   <br>
+  <br>
+  <h2>Tags</h2>
+  <h3>Use this:</h3>
   <%= post_fields.label :tags %>
   <%= post_fields.collection_check_boxes(
         :tag_ids,
@@ -13,23 +16,29 @@
         :name
         ) %>
   <br>
+  <h3>OR - Use this:</h3>
   <%= post_fields.collection_select(
       :tag_ids,
       Tag.all,
       :id,
       :name,
-      {},
-      { multiple: true }
+      {include_blank: true},
+      { multiple: true}
   ) %>
   <br>
+  <br>
+  <h2>Category</h2>
+  <h3>Use this:</h3>
+  <input type="radio" name="post[category_id]" value="" id="blank_radio_opt">
+  <label for="blank_radio_opt">None</label>
   <%= post_fields.collection_radio_buttons(
       :category_id,
       Category.all.limit(6),
       :id,
-      :name,
-      {}
+      :name
   ) %>
   <br>
+  <h3>OR - Use this:</h3>
   <%= post_fields.collection_select(
       :category_id,
       Category.all,
@@ -42,6 +51,7 @@
 <% end %>
 
 <hr>
+<h2>WOW - Check this out!</h2>
 <%= form_tag(posts_path(@post.id), method: "post") do %>
 <%= label_tag("post[title]", "Title:") %>
 <%= text_field_tag("post[title]") %><br>
