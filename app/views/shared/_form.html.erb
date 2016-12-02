@@ -1,32 +1,43 @@
-<%= form_for @post do | post_fields | %>
+<%= form_for @post, :html => {:class => 'post_form', :id => "#{form_id}"} do | post_fields | %>
 
   <%= post_fields.label :title %>
   <%= post_fields.text_field :title %>
   <%= post_fields.label :body %>
   <%= post_fields.text_field :body %>
   <br>
+  <%= post_fields.label :tags %>
   <%= post_fields.collection_check_boxes(
         :tag_ids,
         Tag.all.limit(5),
         :id,
         :name
         ) %>
-    <br>
-    <%= post_fields.collection_radio_buttons(
-        :category_id,
-        Category.all,
-        :id,
-        :name
-    ) %>
-    <br>
-    <%= post_fields.collection_select(
-        :category_id,
-        Category.all,
-        :id,
-        :name
-    ) %>
-    <br>
-  <%= post_fields.submit "Save Post" %>
+  <br>
+  <%= post_fields.collection_select(
+      :tag_ids,
+      Tag.all,
+      :id,
+      :name,
+      {},
+      { multiple: true }
+  ) %>
+  <br>
+  <%= post_fields.collection_radio_buttons(
+      :category_id,
+      Category.all.limit(6),
+      :id,
+      :name,
+      {}
+  ) %>
+  <br>
+  <%= post_fields.collection_select(
+      :category_id,
+      Category.all,
+      :id,
+      :name
+  ) %>
+  <br>
+<%= post_fields.submit "Save Post" %>
 
 <% end %>
 
